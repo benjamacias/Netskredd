@@ -1,0 +1,45 @@
+yt: primero buscar info de los videos mas visto en la zona con la api: https://github.com/youtube/api-samples/blob/master/python/geolocation_search.py
+luego con webscrapping obtener imagen, sonido, descripcion para reconocer musica utilizada, tema explicado, hashtags utilizados, titulos, duracion de videos
+
+
+yt
+https://github.com/youtube/api-samples/blob/master/python/geolocation_search.py
+https://github.com/youtube/api-samples/blob/master/python/retrieve_reports.py
+https://github.com/youtube/api-samples/blob/master/python/create_reporting_job.py
+
+x
+https://github.com/twitterdev/twitter-python-ads-sdk/blob/master/tests/test_analytics_async.py
+
+linkedin
+{{baseUrl}}/adTargetingEntities?q=TYPEAHEAD&facet=List(urn%3Ali%3AadTargetingFacet%3Alocations)&query=afric
+
+tiktok
+import requests
+import json
+
+url = 'https://open.tiktokapis.com/v2/research/adlib/ad/query/?fields=ad,ad_group'
+headers = {
+    'authorization': 'bearer clt.example12345Example12345Example'
+}
+data = {
+    "filters": {
+        "ad_published_date_range": {
+            "min": "20221001",
+            "max": "20230510"
+        },
+        "country": "IT"
+    },
+    "search_term": "coffee",
+    "max_count": 20
+}
+
+print (response = requests.post(url, headers=headers, data=json.dumps(data)))
+
+
+
+
+instagram:
+
+
+https://developers.facebook.com/docs/instagram-api/reference/ig-hashtag-search
+https://www.themachinelearners.com/instagram-web-scrapping/#Cargar_Instagram
