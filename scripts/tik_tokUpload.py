@@ -18,6 +18,7 @@ def tiktok_upload(source_video, video_url):
 
     video_size = os.path.getsize(video_url)
 
+    print(tiktokresponse)
     data = {
         "source_info": 
         { 
@@ -38,4 +39,4 @@ def replace_slashes(path):
     return path.replace('/', '\\')
 
 # Uso de la función
-tiktok_upload("videoprueba", replace_slashes("C:/Users/irma/Downloads/pexels_videos_4636 (1080p).mp4"))
+tiktok_upload("videoprueba", replace_slashes(r"190332 (1080p).mp4"))
