@@ -6,6 +6,8 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 import pdb
+from twitter_upload import create_tweet
+from linkedin_upload import subir_linkedin
 from datetime import datetime
 from tik_tokUpload import tiktok_upload
 
@@ -62,8 +64,34 @@ def main():
     for row in values:
         #print(f"{row[0]}, {row[4]}") 
         if row[2] == datetime:
-            print(row[1])
-            tiktok_upload(row[2], row[9])
+            print(f"nombre: {row[1]} fecha: {row[2]} tiktok:{row[3]}	instagram:{row[4]}  facebook:{row[5]}	twitter:{row[6]}	linkedin:{row[7]} youtube:{row[8]}")
+            actions = {
+              'instagram': {row[4]} ,
+              'facebook': {row[5]},
+              'twitter': {row[6]},
+              'linkedin': {row[7]},
+              'youtube': {row[8]},
+              'tiktok': {row[3]}
+            }
+
+            if actions["tiktok"] == "x":
+              tiktok_upload(row[2], row[9])
+
+            if actions["twitter"] == "x":
+              create_tweet(row[2], row[9])
+            
+            if actions["linkedin"] == "x":
+              subir_linkedin()
+            
+            if actions["facebook"] == "x":
+              print("facebook")
+            
+            if actions["instagram"] == "x":
+              print("instagram")
+            
+            if actions["youtube"] == "x":
+              print("youtube")
+            
   except HttpError as err:
     print(err)
 
