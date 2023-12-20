@@ -15,10 +15,14 @@ def create_tweet(text, media=None):
 
     # Crear el cliente de la API
     client = Client(bearer_token, access_token, access_token_secret)
-
-    # Publicar un tweet
-    client.create_tweet(text='Hello, Twitter!')
-
-    # Publicar un tweet con imagen
-    with open('path/to/image.png', 'rb') as image:
-        client.create_tweet(text='Hello, Twitter!', media=image)
+    if media == None:
+        # Publicar un tweet
+        client.create_tweet(text='Hello, Twitter!')
+    else:
+        # Publicar un tweet con imagen
+        with open('path/to/image.png', 'rb') as image:
+            client.create_tweet(text='Hello, Twitter!', media=image)
+        
+        # Publicar un tweet con video   
+        with open('path/to/video.mp4', 'rb') as video:
+            client.create_tweet(text='Hello, Twitter!', media=video, media_category='tweet_video')
