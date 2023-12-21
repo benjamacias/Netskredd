@@ -62,7 +62,6 @@ def main():
       return
     
     for row in values:
-        #print(f"{row[0]}, {row[4]}") 
         if row[2] == datetime:
             print(f"nombre: {row[1]} fecha: {row[2]} tiktok:{row[3]}	instagram:{row[4]}  facebook:{row[5]}	twitter:{row[6]}	linkedin:{row[7]} youtube:{row[8]}")
             actions = {
