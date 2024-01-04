@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-from twarc import Twarc2
-import tweepy
 import requests
 import os
 from dotenv import load_dotenv
@@ -11,28 +9,39 @@ import base64
 import hashlib
 import urllib
 import re
+import twitter
+from requests_oauthlib import OAuth1  # Agrega esta línea
 
-load_dotenv("archivo.env")
-# Tus claves y tokens de la aplicación de Twitter
-bearer_token =  os.getenv("BEARER_KEY_TW")
-#access_token = os.getenv("CONSUMER_KEY_TW") 
-#access_token_secret =os.getenv("CONSUMER_SECRET_TW")
 
-access_token = '1737461353424515072-XvFvIAl0IJ9iIfYi3YkaIbtFoUetIH'
-access_token_secret = 'GN0Qd4cBGkDWaPgSM5E3YjX6ciIyEu7hzR5JcJVao7Hd6'
-redirect_uri = "http://localhost:8000/callback"
+# Define tus claves de API de Twitter
+client_key = 'Jxgd7i1SPAAfrj1yp8HSzPvJ9'
+client_secret = 'VeU0Bh1NTQ4ASHQC9ZCEyleu1bDzK18VusaBS3NjkzJSDaB0v5'
 
-url = 'https://api.twitter.com/oauth/access_token'
-headers = {'Content-Type': 'application/x-www-form-urlencoded'}
-data = {
-    'code': '1737461353424515072-6FfKshEJ8y9J6q8tY8jns0MAGk5Gq9',
-    'grant_type': 'authorization_code',
-    'client_id': 'SU5Ydkx2Z2ZaRENBQ1dPU2ZGcm46MTpjaQ',
-    'redirect_uri': redirect_uri,
-    'code_verifier': 'challenge'
-}
+resource_owner_key = '1737461353424515072-MyzhHvurwBpayOmt8b8tTTEi3i6YMY'
+resource_owner_secret = 'ZpHVl1A1eXn30UFlbp66oYUZPjRshTE5LbZga7IAvNohO  '
 
-response = requests.post(url, headers=headers, data=data)
+# Crea una sesión OAuth1
+auth = OAuth1(client_key, client_secret, resource_owner_key, resource_owner_secret)
+
+# Define la URL de la API de Twitter para publicar un tweet
+url = 'https://api.twitter.com/1.1/statuses/update.json'
+
+# Define el texto del tweet
+payload = {'status': 'Hello, world!'}
+
+# Realiza la solicitud POST a la API de Twitter
+response = requests.post(url, auth=auth, data=payload)
 
 # Imprime la respuesta
 print(response.json())
+
+'AAAAAAAAAAAAAAAAAAAAAIFArgEAAAAA8QeAxXpksvB0XzD%2FIh5Ny5tPRdE%3DrYRcbAoQAQgekjFLjgp7C6v126XhoWYHLCEabJyubYbT11HU5x'
+'1737461353424515072-UXLOZnaaVS68Y72P3ATM2X3sssFxlr'
+"Oauth 2.0"
+'SU5Ydkx2Z2ZaRENBQ1dPU2ZGcm46MTpjaQ',
+'OyBUST5y03v9_36q0lvfuqdPZTDyUCRYjgYWhw1SZu9_pMXREJ'
+"""
+api = twitter.Api(consumer_key='Jxgd7i1SPAAfrj1yp8HSzPvJ9',
+                  consumer_secret='VeU0Bh1NTQ4ASHQC9ZCEyleu1bDzK18VusaBS3NjkzJSDaB0v5',
+                  access_token_key='AAAAAAAAAAAAAAAAAAAAAIFArgEAAAAA8QeAxXpksvB0XzD%2FIh5Ny5tPRdE%3DrYRcbAoQAQgekjFLjgp7C6v126XhoWYHLCEabJyubYbT11HU5x',
+                  access_token_secret='OyBUST5y03v9_36q0lvfuqdPZTDyUCRYjgYWhw1SZu9_pMXREJ')"""
